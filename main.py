@@ -4,14 +4,14 @@ from datetime import datetime
 
 
 class Task:
-    def__init__(self, title, description, priority):
-       self.title = title 
-       self.description = description
-       self.priority = priority
-       self.completed = False
-       self.created_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    def __init__(self, title, description, priority):
+        self.title = title 
+        self.description = description
+        self.priority = priority
+        self.completed = False
+        self.created_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
-    def to_dict(self):
+    def    to_dict(self):
         return{
             "title": self.title,
             "description": self.description,
@@ -28,10 +28,10 @@ class Task:
         return task
     
     class TaskManager:
-        def__init__(self, filename="tasks.json"):
-        self.filname = filename
-        self.tasks = []
-        self.load_tasks()
+        def __init__(self, filename="tasks.json"):
+            self.filname = filename
+            self.tasks = []
+            self.load_tasks()
 
     def add_task(self, title, description, priority):
         task = Task(title, description, priority)
@@ -74,7 +74,7 @@ class Task:
           print(f"Status: {status}")
           print(f"Creat la: {task.created_at}")
 
-    def save_tasks(self)
+    def save_tasks(self):
         with open(self.filname, "w") as f:
             json.dump([task.to_dicg() for task in self.tasks], f, indent=4)
         
@@ -103,7 +103,7 @@ class Task:
 
            choice = input("Alege o opțiune: ")
 
-           if choice == "1"
+           if choice == "1":
               title = input("Titlu: ")
               description = input("Descriere: ")
               priority = input("Prioritate (Low/Medium/High): ")
@@ -111,15 +111,15 @@ class Task:
 
            elif choice == "2":
                manager.show_tasks()    
-               try:
-                  index = int(input("Index task de șters: "))
-                  manager.mark_completed(index)
+                try:                
+                    index = int(input("Index task de șters: "))
+                    manager.mark_completed(index)
                 except ValueError:
                     print("Introdu un număr valid!")
 
             elif choice =="3":
                 manager.show_tasks()
-                try:
+                try:                
                    index =int(input("Index task de marcat: "))
                    manager.mark_completed(index)
                 except ValueError:
