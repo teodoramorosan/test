@@ -158,3 +158,69 @@ class Biblioteca:
             self.utilizator[username] = parola
             self.save_data()
             print("✔ Utilizator creat!")
+
+        def login(self):
+            username = input("Username: ")
+            parola = input("Parola: ")
+            if self.utilizatori.get(username) == parola:
+                print("✔ Autentificare reușită!")
+                return username
+            else:
+                print("Date incorecte!")
+                return None
+        
+
+def main():
+    biblioteca = Biblioteca()
+
+    while True:
+        print("\n=== SISTEM BIBLIOTECĂ ===")
+        print("1. Login")
+        print("2. Înregistrare")  
+        print("3. Ieșire")
+    
+        alegere = input("Alege opțiunea: ")
+
+        if alegere == "1":
+            user = biblioteca.login()
+            if user:
+                while True:
+                    print(f"\n--- Meniu utilizator ({user}) ---")
+                    print("1. Afișează cărți")
+                    print("2. Adaugă carte")
+                    print("3. Șterge carte")
+                    print("4. Împrumută carte")
+                    print("5. Returnează carte")
+                    print("6. Caută carte")
+                    print("7. Logout")
+
+                    opt = input("Alege: ")
+
+                    if opt == "1":
+                        biblioteca.afiseaza_carti()
+                    elif opt == "2":
+                        biblioteca.adauga_carte()
+                    elif opt == "3":
+                        biblioteca.sterge_carte()
+                    elif opt == "4":
+                        biblioteca.imprumutata_carte(user)
+                    elif opt == "5":
+                        biblioteca returneaza_carte(user)
+                    elif opt == "6":
+                        biblioteca.cauta_carte()
+                    elif opt == "7":
+                        break
+                    else:
+                        print("Opțiune invalidă!")
+
+            elif alegere == "2":
+                biblioteca.inregistreaza_utilizator()
+            elif alegere == "3":
+                print("La revedere!")
+                break
+            else:
+                print("Opțiune invalidă!")
+
+
+if  __name__ == "__main__":
+    main()
