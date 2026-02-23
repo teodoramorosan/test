@@ -62,4 +62,99 @@ class Biblioteca:
             status = "Disponibilă"
             if carte.imprumutata:
                 status = f"Împrumutată de {carte.imprumutata_de}"
-            print(f"{i}. {carte.titlu} - {carte.autor} ({carte.an}) | {status}")    
+            print(f"{i}. {carte.titlu} - {carte.autor} ({carte.an}) | {status}")
+    def sterge_carte(self):
+        self.afiseaza_carti()
+        try:
+            index = int(input("Număr carte de șters:"))
+            if 0 <= index < len(self.carti):
+                del self.carti[index]
+                self.save_data()
+                print("✔ Carte adăugată cu succes!")
+    
+    def afiseaza_carti(self):
+        if not self.carti:
+            print("Nu există cărți în bibliotecă.")
+            return
+        
+        for i, carte in enumerate(self.carti,1):
+            status = "Disponibilă"
+            if carte.imprumutata:
+                status = f"Împrumutată de {carte.imprumutata_de}"
+            print(f"{i}. {carte.titlu} - {carte.autor} ({carte.an}) | {status})")
+
+    def sterge_carte(self):
+        self.afiseaza_carti()
+        try:
+            index = int(input("Număr carte de șters: ")) - 1
+            if 0 <= index < len(self.carti):
+                del self.carti[index]
+                self.save_data()
+                print("✔ Carte ștearsă!")
+            else:
+                print("Index invalid!")
+        except:
+            print("Input invalid!")
+
+    def imprumutata_carte(self, utilizator):
+        self.afiseaza_carti()
+        try:
+            index = int(input("Număr carte de împrumuta: ")) - 1
+            if 0 <= index < len(self.carti):
+                carte = self.carti[index]
+                if not carte.imprumutata:
+                    carte.imprumutata = True
+                    carte.imprumutata_de = utilizator
+                    carte.data_imprumut = datetime.now().strftime("%Y-%m-%d")
+                    self.save_data()
+                    print("✔ Carte împrumutată!")
+                else:
+                    print("Cartea este deja împrumutată.")
+            else:
+                print("Index invalid!")
+        except:
+            print("Input invalid!")
+        
+        def returneaza_carte(self,utilizator):
+            carti_utilizator = [c for c in self.carti if c.imprumutata_de == utilizator]
+
+            if not carti_utilizator:
+                print("Nu ai cărți împrumutate.")
+                return
+
+            for i, carte in enumerate(carti_utilizator, 1):
+                print(f"{i}. {carte.titlu}")
+            
+            try:
+                index = int(input("Număr carte de returnat:")) - 1
+                if 0 <= index < len(carti_utilizator):
+                    carte = carti_utiliator[index]
+                    carte.imprumutata = False
+                    carte.imprumutata_de = None
+                    carte.data_imprumut = None
+                    self.save_data ()
+                    print("✔ Carte returnată!")
+                else:
+                    print("Index invalid!")
+            except:
+                print("Input invalid!")
+
+        def cauta_carte(self):
+            termen = input("Introdu titlu sau autor:").lower()
+            rezultate = [c for c in self.carti if termen in c.titlu.lower() or termen in c.autor.lower()]
+
+            if rezultate:
+                for carte in rezultate:
+                    print(f"{carte.titlu} - {carte.autor} ({carte.an})")
+                else:
+                    print("Nici o carte găsită.")
+
+        def inregistreaza_utilizator(self):
+            username = input ("Username nou: ")
+            if username in self.utilizatori:
+                print ("Utilizator existent!")
+                return
+            parola = input("Parola: ")
+            self.utilizator[username] = parola
+            self.save_data()
+            print("✔ Utilizator creat!")
