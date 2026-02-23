@@ -43,3 +43,23 @@ class Biblioteca:
                 "carti":[c.to_dict() for c in self.carti],
                 "utilizatori": self.utilizatori
             }, f, indent=4)
+
+    def adauga_carte(self):
+        titlu = input("Titlu: ")
+        autor = input("Autor: ")
+        an = input("An aparitie:")
+        carte = Carte(titlu, autor, an)
+        self.carti.append(carte)
+        self.save_data()
+        print("✔ Carte adăugată cu succes!")
+
+    def afiseaza_carti(self):
+        if not self.carti:
+            print("Nu există cărți în bibliotecă.")
+            return
+
+        for i, carte in enumerate(self.carti, 1):
+            status = "Disponibilă"
+            if carte.imprumutata:
+                status = f"Împrumutată de {carte.imprumutata_de}"
+            print(f"{i}. {carte.titlu} - {carte.autor} ({carte.an}) | {status}")    
