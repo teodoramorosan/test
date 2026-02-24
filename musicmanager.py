@@ -1,3 +1,4 @@
+from datetime import date
 import json
 import os
 
@@ -70,4 +71,43 @@ class MusiManager:
             json.dump([m.to_dict() for m in self.melodii], f, indent=4)
         print("Date salvate cu succes!\n")
 
-    def incarca_fisier(self, nume_fisier"melodii.jason")
+    def incarca_fisier(self, nume_fisier="melodii.json"):
+        if not os.path.exists(nume_fisier):
+            print("Fișierul nu există.\n")
+            return
+        
+        with open(nume_fisier, "r") as f:
+            data = json.load(f)
+            self.melodii = [Melodie.from_dict(m) for m in data]
+        print("Date încărcate cu succes!\n")
+
+
+
+def meniu():
+    manager = MusicManager()
+    manager.incarca_fisier()
+
+    while True:
+        print("===== MUSIC MANAGER =====")
+        print("1. Adaugă melodie")
+        print("2. Afișează melodii")
+        print("3. Caută după artist")
+        print("4. Top melodii lungi")
+        print("5. Salvează")
+        print("6. Ieșire")
+        
+        optiune = input("Alege o opțiune: ")
+
+        if optiune == "1":
+            manager.adauga_melodie()
+        elif optiune == "2":
+            manager.afiseaza_melodii()
+        elif optiune == "3":
+            manager.cauta_dupa_artist()
+        elif optiune == "4":
+            manager.salveaza_fisier()
+        elif optiune == "5":
+            manager.salveaza_fisier()
+            break
+        else:
+            print("Opțiune invalidă.\n")
