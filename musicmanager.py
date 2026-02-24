@@ -84,7 +84,7 @@ class MusiManager:
 
 
 def meniu():
-    manager = MusicManager()
+    manager = MusiManager()
     manager.incarca_fisier()
 
     while True:
@@ -95,7 +95,7 @@ def meniu():
         print("4. Top melodii lungi")
         print("5. Salvează")
         print("6. Ieșire")
-        
+
         optiune = input("Alege o opțiune: ")
 
         if optiune == "1":
@@ -105,9 +105,16 @@ def meniu():
         elif optiune == "3":
             manager.cauta_dupa_artist()
         elif optiune == "4":
-            manager.salveaza_fisier()
+            manager.top_melodii_lungi()
         elif optiune == "5":
             manager.salveaza_fisier()
+        elif optiune == "6":
+            manager.salveaza_fisier()
+            print("La revedere!")
             break
         else:
             print("Opțiune invalidă.\n")
+        
+
+if __name__ == "__main__":
+    meniu()
