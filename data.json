@@ -1,0 +1,26 @@
+[
+    {
+        "amount": 2000,
+        "category": "Salary",
+        "type": "income",
+        "date": "2026-02-25"
+    },
+    {
+        "amount": 500,
+        "category": "Rent",
+        "type": "expense",
+        "date": "2026-02-25"
+    },
+    {
+        "amount": 2000,
+        "category": "Salary",
+        "type": "income",
+        "date": "2026-02-25"
+    },
+    {
+        "amount": 500,
+        "category": "Rent",
+        "type": "expense",
+        "date": "2026-02-25"
+    }
+]
