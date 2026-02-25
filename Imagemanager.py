@@ -118,3 +118,4 @@ class ImageManager:
 
 if __name__ == "__main__":
     meniu()
+    
