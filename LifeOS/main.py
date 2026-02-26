@@ -1,5 +1,5 @@
 from tasks import *
-from LifeOS.goals import *
+from life_score import *
 from habits import *
 from finance import *
 
