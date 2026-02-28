@@ -29,3 +29,169 @@ def  save_data(data):
 
 def create_profile():
    data = load_data()
+
+   if data["profile"]:
+      print("Print already exists.")
+      return
+   
+   name = input("Name: ")
+   age = input("Age: ")
+   weight = input("Weight (kg): ")
+   height = input("Height (cm): ")
+
+    data["profile"]= {
+       "name": name, 
+       "age": age,
+       "weight": float(weight),
+       "height": float(height)
+    }
+   
+   save_data(data)
+   print("Profile created successfully!")
+
+
+def view_profile():
+   data = load_data()
+   profile = data["profile"]
+
+   if not profile:
+      print("No profile found.")
+      return
+   
+   print("\n===== PROFILE =====")
+   for key, value in profile.items():
+      print(f"{key.capitaliza()}: {value}")
+    print("===================\n")
+   
+
+   # ------------------ WORKOUTS ------------------
+
+   def  add_workout():
+      data = load_data()
+
+      date = datetime.now()strftime("%Y-%m-%d")
+      exercises = []
+
+      print("Adding exercises (type 'done' to top)")
+
+      while True:
+         name = input("exercise name: ")
+         if name.lower() == "done":
+            break
+         
+         weight = float(input("Weight (kg): "))
+         reps = int(input("Reps: "))
+         sets = int(input("Stets: "))
+
+         exercices.append({
+            "name": name,
+            "weight": weight,
+            "reps": reps,
+            "sets": sets
+         })
+
+         work out = {
+            "date": date,
+            "exercises": exercises
+         }
+
+         data["workouts"].append(workout)
+         save_data
+
+         print("Workout saved!")
+
+    def view_workouts():
+      data = load_data()
+
+      if not data["workouts"]:
+         print("No workouts found.")
+         return
+      
+      for workout in data["workouts"]:
+         print(f"\nDate: {workout['date']}")
+         for ex in workout["exercises"]:
+            print("- {ex['name']} | {ex['weight']}kg | {ex['sets']}x{ex['reps']}")
+
+
+
+               # ------------------ MEALS ------------------
+
+               def  add_meal():
+                data = load_data()
+
+                name = input("Meal name: ")
+                calories = float(input("Calories: "))
+                protein = float(input("Protein (g): "))
+
+                meal = {
+                   "date: datetime.now().strftime("%Y-%m-%d"),
+                   "name": name,
+                   "calories": calories, 
+                   "protein": protein
+                }
+            
+                data["meals"].append(meal)
+                save_data(data)
+
+                print("Meal added!")
+
+
+            def daily_nutrition():
+               data = load_data()
+               today = datatime.now().strftime("%Y-%m-%d")
+
+               today_meals = [m for m in data["meals"] if m["date"] == today]
+
+               total_calories = sum(m["calories"] for m in today_meals)
+               total_protein = sum(m["protein"] for m in today_meals)
+
+               print(f"\nToday's calories: {total_calories}")
+               print(f"Today's protein: {total_protein}g\n")
+
+
+# ------------------ STATISTICS ------------------
+
+def show_statistics():
+   data = load_data()
+
+   total_workouts = len(data["workouts"])
+   total_meals = len(data["meals"])
+
+   print("\n===== STATISTIC =====")
+   print("Total workouts:", total_workouts)
+   print("Total meals logged:", total_meals)
+
+   if data["workouts"]:
+      total_exercises = sum(len(w["exercises"]) for w in data["workouts"])
+      print("Total exercices performed:", total_exercises)
+
+      print("======================\n")
+
+
+# ------------------ MAIN MENU ------------------
+
+def main():
+   while True: 
+      print("\n===== FITNESS TRACKER =====")
+      print("1. Create Profile")
+      print("2. View Profile")
+      print("3. Ad Workout")
+      print("4. View Workouts")
+      print("5. Add Meal")
+      print("6. Daily Nutrition")
+      print("7. Statistics")
+      print("8. Exit")
+
+      choice == input("Choice: "):
+
+      if choice == "1":
+         create_profile()
+      elif choice == "2":
+         view_profile()
+      elif choice == "3":
+         add_workout()
+      elif choice == "4":
+         view_workouts()
+      elif choice "5":
+            add_meal()
+    
