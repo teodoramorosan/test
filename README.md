@@ -2,6 +2,8 @@
 
 > A collection of **beginner-friendly Python projects** designed to practice programming, build useful utilities, and create simple interactive applications.
 
+DEMO: 2026-03-16 16-46-24.mp4 (in files)
+
 <video src="./2026-03-16 16-46-24.mp4" controls></video>
 
 This repository contains multiple **standalone Python applications** including productivity tools, games, finance trackers, and utility programs. Each project can run independently from the command line and demonstrates core Python concepts such as:
